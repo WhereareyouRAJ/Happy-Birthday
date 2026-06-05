@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Jaanuuuuuuuuuuu💖🥰😘!</title>
+ 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:image" content="https://placehold.co/1200x630/87CEEB/FFFFFF?text=A+Surprise+For+Jaanu">
+ 
+  <style>
+    /* ── Music Player ── */
+    #music-player {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      padding: 10px 18px;
+      box-shadow: 0 4px 20px rgba(192, 132, 160, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+    #music-player:hover { box-shadow: 0 6px 28px rgba(192, 132, 160, 0.6); }
+    #music-player .music-icon { font-size: 20px; animation: spin 4s linear infinite; }
+    #music-paused .music-icon { animation-play-state: paused; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    #music-player .music-label { font-size: 13px; color: #c084a0; font-weight: 600; max-width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #music-btn {
+      background: linear-gradient(135deg, #f9a8d4, #c084a0);
+      border: none;
+      color: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    #music-btn:hover { transform: scale(1.1); }
+ 
+    /* ── Romantic Section ── */
+    .romantic-section {
+      background: linear-gradient(135deg, #fff0f5, #fce7f3);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(192, 132, 160, 0.15);
+    }
+    .romantic-section p {
+      line-height: 2;
+    }
+    .romantic-section .highlight {
+      color: #FFB7C5;
+      font-weight: 700;
+    }
+    .heart-divider {
+      color: #FFB7C5;
+      font-size: 1.5rem;
+      letter-spacing: 8px;
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- Canvas for the falling cherry blossoms -->
+<canvas id="sakura-canvas"></canvas>
+ 
+<!-- ══════════════════════════════════════
+     🎵 MUSIC PLAYER (Fixed bottom-right)
+     ══════════════════════════════════════ -->
+<div id="music-player">
+  <span class="music-icon">🎵</span>
+  <span class="music-label">Hamare liye 💕</span>
+  <button onclick="toggleMusic()" id="music-btn" title="Play/Pause">▶</button>
+</div>
+ 
+<audio id="bg-music" loop>
+  <source src="music/Hum Haeen Piya Ji Ke Patar Tiriywa _ #Bhojpuri SONG _ Patna Se Pakistan.mp3" type="audio/mpeg">
+  <!-- Fallback: you can also use an .ogg version -->
+</audio>
+ 
+<!-- ══════════════════════════════════════
+     Section 1: Hero Welcome
+     ══════════════════════════════════════ -->
+<header class="h-screen relative flex items-center justify-center text-white overflow-hidden">
+  <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
+    <source src="img/1.video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+ 
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+ 
+  <div class="text-center z-10 p-4" data-aos="fade-in" data-aos-duration="1500">
+    <h1 class="text-5xl md:text-7xl font-anime drop-shadow-lg">Happy Birthday, Jaanuuuuuuuuuuu! 💖</h1>
+    <p class="mt-4 text-xl font-semibold">Celebrating you, today and always 🌸</p>
+    <div id="countdown" class="mt-6 text-2xl font-semibold tracking-widest leading-relaxed"></div>
+  </div>
+</header>
+ 
+<!-- Main Content -->
+<main class="container mx-auto p-6 md:p-12">
+ 
+  <!-- ══════════════════════════════════════
+       💕 ROMANTIC HINGLISH SECTION (NEW)
+       ══════════════════════════════════════ -->
+  <section class="my-16 md:my-24 max-w-3xl mx-auto" data-aos="fade-up">
+    <div class="romantic-section">
+      <h2 class="text-3xl md:text-4xl font-anime text-pink-400 mb-4">Sirf Tere Liye... 💌</h2>
+      <div class="heart-divider">♥ ♥ ♥</div>
+      <p>
+        Jaanu, tujhe dekh ke lagta hai<br>
+        <span class="highlight">duniya thodi aur khoobsurat ho gayi hai... ✨</span>
+      </p>
+      <p class="mt-4">
+        Teri hansi sunke dil karta hai —<br>
+        yeh pal hamesha yahi ruke,<br>
+        <span class="highlight">aur main bas tujhe dekhta rahun... 🥺💕</span>
+      </p>
+      <p class="mt-4">
+        Tu sirf meri Jaanu nahi hai,<br>
+        tu meri <span class="highlight">sabse pyaari feeling</span> hai —<br>
+        woh feeling jo har subah naya lagti hai 🌅
+      </p>
+      <p class="mt-4">
+        Tere bina sab kuch adhoora hai,<br>
+        <span class="highlight">tere saath sab kuch poora. 💫</span>
+      </p>
+      <div class="heart-divider mt-6">♥ ♥ ♥</div>
+      <p class="text-sm text-pink-300 mt-2 italic">— Sirf tera, Rajwa 😎❤️</p>
+    </div>
+  </section>
+ 
+  <!-- ══════════════════════════════════════
+       Section 2: A Letter For You
+       ══════════════════════════════════════ -->
+  <section class="my-16 md:my-24 max-w-3xl mx-auto text-center" data-aos="fade-up">
+    <h2 class="text-4xl md:text-5xl font-anime text-sakura mb-8 drop-shadow-sm">A Special Message For Jaanuuuuuuuuuuu</h2>
+    <div class="text-left text-lg leading-relaxed space-y-4 bg-white p-8 rounded-lg shadow-lg">
+      <p>Hey Jaanuuuuuuuuuuu,</p>
+      <p>Wish you a very Happy Birthday Jaanuuuuuuuuuuu! May god fulfil all your wishes, you have an endless supply of happy days and your dreams turns into reality, A life surrounded with pets and life that will become a manga 🌸</p>
+      <p>Love You Loliiiiiiiiii 😘</p>
+      <p class="text-right mt-8">
+        Rajwa 😎😁<br>
+      </p>
+    </div>
+  </section>
+ 
+  <!-- ══════════════════════════════════════
+       Section 3: The Timeline
+       ══════════════════════════════════════ -->
+  <section class="my-16 md:my-24">
+    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12" data-aos="fade-up">Humara suhana Safar 😌</h2>
+    <div class="space-y-16">
+ 
+      <!-- Timeline Item 1 — kept 7.png.jpeg as requested -->
+      <div class="flex flex-col md:flex-row items-center gap-8" data-aos="fade-right">
+        <img src="img/7.png.jpeg" alt="Our first meeting" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">
+        <div class="text-center md:text-left">
+          <h3 class="text-2xl font-anime text-sakura">Our first Meeting</h3>
+          <p class="mt-2 text-lg">Kabhi socha nahi tha yha tak aaenge</p>
+        </div>
+      </div>
+ 
+      <!-- Timeline Item 2 -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8" data-aos="fade-left">
+        <img src="img/2.png.jpeg" alt="Memory 2" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">
+        <div class="text-center md:text-right">
+          <h3 class="text-2xl font-anime text-sakura">Part 2</h3>
+          <p class="mt-2 text-lg">I</p>
+        </div>
+      </div>
+ 
+      <!-- Timeline Item 3 -->
+      <div class="flex flex-col md:flex-row items-center gap-8" data-aos="fade-right">
+        <img src="img/3.png.jpeg" alt="Memory 3" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">
+        <div class="text-center md:text-left">
+          <h3 class="text-2xl font-anime text-sakura">Part 3</h3>
+          <p class="mt-2 text-lg">Love </p>
+        </div>
+      </div>
+ 
+      <!-- Timeline Item 4 -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8" data-aos="fade-left">
+        <img src="img/4.png.jpeg" alt="Memory 4" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">
+        <div class="text-center md:text-right">
+          <h3 class="text-2xl font-anime text-sakura">Part 4</h3>
+          <p class="mt-2 text-lg">You 😘💖🥰</p>
+        </div>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <!-- ══════════════════════════════════════
+       Section 4: Hall of Fame
+       ══════════════════════════════════════ -->
+  <section class="my-16 md:my-24">
+    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12" data-aos="fade-up">❤️</h2>
+    <div class="relative">
+      <button id="scroll-left-btn" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-opacity opacity-0 md:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sakura" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button id="scroll-right-btn" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-opacity opacity-0 md:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sakura" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+ 
+      <div id="hall-of-fame-scroller" class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide p-4 -mx-4">
+        <div class="flex snap-x snap-mandatory gap-8">
+ 
+          <!-- Card 1 -->
+          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/1.png.jpeg" alt="Photo 1" class="w-full h-80 object-cover rounded-md mb-4">
+              <h3 class="text-2xl font-anime text-sakura">Photo 1</h3>
+              <p class="mt-2">"🥰"</p>
+            </div>
+          </div>
+ 
+          <!-- Card 2 -->
+          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/2.png.jpeg" alt="Photo 2" class="w-full h-80 object-cover rounded-md mb-4">
+              <h3 class="text-2xl font-anime text-sakura">Photo 2</h3>
+              <p class="mt-2">"😘"</p>
+            </div>
+          </div>
+ 
+          <!-- Card 3 -->
+          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/3.png.jpeg" alt="Photo 3" class="w-full h-80 object-cover rounded-md mb-4">
+              <h3 class="text-2xl font-anime text-sakura">Photo 3</h3>
+              <p class="mt-2">"🥰"</p>
+            </div>
+          </div>
+ 
+          <!-- Card 4 -->
+          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/4.png.jpeg" alt="Photo 4" class="w-full h-80 object-cover rounded-md mb-4">
+              <h3 class="text-2xl font-anime text-sakura">Photo 4</h3>
+              <p class="mt-2">"😘"</p>
+            </div>
+          </div>
+ 
+          <!-- Card 5 -->
+          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="500">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/5.png.jpeg" alt="Photo 5" class="w-full h-80 object-cover rounded-md mb-4">
+              <h3 class="text-2xl font-anime text-sakura">Photo 5</h3>
+              <p class="mt-2">"🥰"</p>
+            </div>
+          </div>
+ 
+          <!-- Card 6 -->
+          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="600">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/6.png.jpeg" alt="Photo 6" class="w-full h-80 object-cover rounded-md mb-4">
+              <h3 class="text-2xl font-anime text-sakura">Photo 6</h3>
+              <p class="mt-2">"😘"</p>
+            </div>
+          </div>
+ 
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ══════════════════════════════════════
+       Section 5: Gallery
+       ══════════════════════════════════════ -->
+  <section class="my-16 md:my-24">
+    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12" data-aos="fade-up">Love you meri jaanuuuuuuu❤️</h2>
+    <p class="text-center text-lg -mt-8 mb-12"></p>
+    <div id="lightgallery" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+ 
+      <a href="img/1.png.jpeg" data-aos="zoom-in" class="block w-full h-48 md:h-64">
+        <img src="img/1.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 1">
+      </a>
+      <a href="img/2.png.jpeg" data-aos="zoom-in" data-aos-delay="100" class="block w-full h-48 md:h-64">
+        <img src="img/2.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 2">
+      </a>
+      <a href="img/3.png.jpeg" data-aos="zoom-in" data-aos-delay="200" class="block w-full h-48 md:h-64">
+        <img src="img/3.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 3">
+      </a>
+      <a href="img/4.png.jpeg" data-aos="zoom-in" data-aos-delay="300" class="block w-full h-48 md:h-64">
+        <img src="img/4.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 4">
+      </a>
+      <a href="img/5.png.jpeg" data-aos="zoom-in" data-aos-delay="400" class="block w-full h-48 md:h-64">
+        <img src="img/5.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 5">
+      </a>
+      <a href="img/6.png.jpeg" data-aos="zoom-in" data-aos-delay="500" class="block w-full h-48 md:h-64">
+        <img src="img/6.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 6">
+      </a>
+      <a href="img/7.png.jpeg" data-aos="zoom-in" data-aos-delay="600" class="block w-full h-48 md:h-64">
+        <img src="img/7.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 7">
+      </a>
+      <a href="img/8.png.jpeg" data-aos="zoom-in" data-aos-delay="700" class="block w-full h-48 md:h-64">
+        <img src="img/8.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 8">
+      </a>
+      <a href="img/9.png.jpeg" data-aos="zoom-in" data-aos-delay="800" class="block w-full h-48 md:h-64">
+        <img src="img/9.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 9">
+      </a>
+      <a href="img/10.png.jpeg" data-aos="zoom-in" data-aos-delay="900" class="block w-full h-48 md:h-64">
+        <img src="img/10.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 10">
+      </a>
+      <a href="img/11.png.jpeg" data-aos="zoom-in" data-aos-delay="1000" class="block w-full h-48 md:h-64">
+        <img src="img/11.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 11">
+      </a>
+      <a href="img/12.png.jpeg" data-aos="zoom-in" data-aos-delay="1100" class="block w-full h-48 md:h-64">
+        <img src="img/12.png.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 12">
+      </a>
+ 
+    </div>
+  </section>
+ 
+  <!-- ══════════════════════════════════════
+       Section 6: Finale
+       ══════════════════════════════════════ -->
+  <section class="my-16 md:my-24" data-aos="fade-up">
+    <h2 class="text-4xl md:text-5xl font-anime text-center mb-4">Happy Birthday Jaanuuuuuuuuuuu 💖</h2>
+    <div class="max-w-4xl mx-auto rounded-lg shadow-2xl overflow-hidden bg-navy">
+    </div>
+  </section>
+ 
+</main>
+ 
+<!-- Footer -->
+<footer class="bg-navy text-white p-8 text-center">
+  <p>Enjoy your day to the fullest. 🌸</p>
+  <p class="text-sm opacity-70 mt-2">Hope you liked it... — Rajwa 😎❤️</p>
+</footer>
+ 
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+<script src="script.js"></script>
+ 
+<!-- ══════════════════════════════════════
+     🎵 Music Player Logic
+     ══════════════════════════════════════ -->
+<script>
+  const audio = document.getElementById('bg-music');
+  const btn   = document.getElementById('music-btn');
+  const player = document.getElementById('music-player');
+  let playing = false;
+ 
+  function toggleMusic() {
+    if (playing) {
+      audio.pause();
+      btn.textContent = '▶';
+      player.id = 'music-player';
+    } else {
+      audio.play().catch(() => {
+        console.log('Autoplay blocked — user must click play.');
+      });
+      btn.textContent = '⏸';
+    }
+    playing = !playing;
+  }
+ 
+  // Try autoplay on first user interaction with the page
+  document.addEventListener('click', function autoplayOnce() {
+    if (!playing) {
+      audio.play().then(() => {
+        btn.textContent = '⏸';
+        playing = true;
+      }).catch(() => {});
+    }
+    document.removeEventListener('click', autoplayOnce);
+  }, { once: true });
+</script>
+ 
+</body>
+</html>
+ 
